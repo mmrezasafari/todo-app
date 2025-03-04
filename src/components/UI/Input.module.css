@@ -1,0 +1,26 @@
+.input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ccf;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #007bff;
+}
+
+@media (max-width: 600px) {
+  .input {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .input {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+.inputs {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  gap: 10px;
+}
+
+.inputs>p {
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
