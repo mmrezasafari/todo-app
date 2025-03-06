@@ -35,7 +35,10 @@ export default function Task({ task, index }) {
     <Card>
       <div className={classes.inputs}>
         <p>{index + 1} |</p>
-        <CheckBox onChange={toggleTaskStatusHandler} checked={task.completed} />
+        <CheckBox
+          onChange={toggleTaskStatusHandler}
+          checked={task.completed}
+        />
         {
           !editable
             ? <p>{task.title}</p>
@@ -45,10 +48,25 @@ export default function Task({ task, index }) {
       <div className={classes.buttons}>
         {
           !editable
-            ? <Button type="button" onClick={() => setEditable(true)}>Edit</Button>
-            : <Button className="success" type="button" onClick={editTaskHandler}>save</Button>
+            ? <Button
+              colorType="primary"
+              onClick={() => setEditable(true)}
+            >
+              Edit
+            </Button>
+            : <Button
+              colorType="success"
+              onClick={editTaskHandler}
+            >
+              save
+            </Button>
         }
-        <Button className="danger" type="button" onClick={() => deleteTaskHandler(task)}>Delete</Button>
+        <Button
+          colorType="danger"
+          onClick={() => deleteTaskHandler(task)}
+        >
+          Delete
+        </Button>
       </div>
     </Card>
   )

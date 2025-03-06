@@ -1,15 +1,1 @@
-.danger {
-  background-color: #ff4040 !important;
-}
 
-.success {
-  background-color: #008000db !important;
-}
-
-button.danger:hover {
-  background-color: red !important;
-}
-
-button.success:hover {
-  background-color: green !important;
-}

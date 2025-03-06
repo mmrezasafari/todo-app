@@ -1,4 +1,6 @@
 import { todoActions } from "./todo"
+import { notificationAction } from './notification'
+
 
 export const fetchAllTodos = () => {
   return async (dispatch) => {
@@ -16,10 +18,25 @@ export const fetchAllTodos = () => {
     }
 
     try {
+      dispatch(notificationAction.setNotificationData({
+        visible: true,
+        status: 'waiting',
+        title: 'waiting ...'
+      }))
       const data = await fetchDate()
       dispatch(todoActions.fetchAllTodos(data))
+      dispatch(notificationAction.setNotificationData({
+        visible: true,
+        status: 'success',
+        title: 'data fetch successfully'
+      }))
     } catch (err) {
       console.error(err)
+      dispatch(notificationAction.setNotificationData({
+        visible: true,
+        status: 'error',
+        title: 'could not fetch data'
+      }))
     }
   }
 }
@@ -27,6 +44,11 @@ export const fetchAllTodos = () => {
 export const updateTodo = (data) => {
   return (dispatch) => {
     const updateTodo = { ...data }
+    dispatch(notificationAction.setNotificationData({
+      visible: true,
+      status: 'waiting',
+      title: 'waiting ...'
+    }))
     dispatch(todoActions.updateTodo(updateTodo))
 
     fetch(`https://jsonplaceholder.typicode.com/todos/${data.id}`, {
@@ -37,8 +59,19 @@ export const updateTodo = (data) => {
       body: JSON.stringify(updateTodo)
     })
       .then((response) => response.json())
-      .then((data) => console.log('data updated', data))
+      .then((data) => {
+        dispatch(notificationAction.setNotificationData({
+          visible: true,
+          status: 'success',
+          title: 'data fetch successfully'
+        }))
+      })
       .catch((err) => {
+        dispatch(notificationAction.setNotificationData({
+          visible: true,
+          status: 'error',
+          title: 'could not fetch data'
+        }))
         console.error(err)
       })
 
@@ -47,6 +80,11 @@ export const updateTodo = (data) => {
 
 export const deleteTodo = (data) => {
   return (dispatch) => {
+    dispatch(notificationAction.setNotificationData({
+      visible: true,
+      status: 'waiting',
+      title: 'waiting ...'
+    }))
     dispatch(todoActions.deleteTodo(data))
 
     fetch(`https://jsonplaceholder.typicode.com/todos/${data.id}`, {
@@ -56,8 +94,19 @@ export const deleteTodo = (data) => {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log('data deleted', data))
+      .then((data) => {
+        dispatch(notificationAction.setNotificationData({
+          visible: true,
+          status: 'success',
+          title: 'data fetch successfully'
+        }))
+      })
       .catch((err) => {
+        dispatch(notificationAction.setNotificationData({
+          visible: true,
+          status: 'error',
+          title: 'could not fetch data'
+        }))
         console.error(err)
       })
 
