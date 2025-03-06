@@ -1,9 +1,9 @@
 import classes from './Button.module.css'
 
-export default function button(props) {
+export default function button({ colorType, ...props }) {
   let className = null
 
-  switch (props.colorType) {
+  switch (colorType) {
     case 'primary': {
       className = `${classes.button} ${classes.primary}`
       break
